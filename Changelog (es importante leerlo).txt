@@ -1,0 +1,115 @@
+Changelog de tablas afectadas:
+	En los casos en que se haga mención a TDB u otra tabla ajena a PSDB, no se han tomado como referencia de estas, ni ID´s ni entry´s, para buscar textos, sino, enunciados idénticos (con excepción de la locales_item que ya era compatible y locales_npc_text). En las búsquedas WEB, si se han tomado como referencia las ID´s ó entry´s de las tablas de PSDB, con objeto de no “contaminar” Cataclysm con identificadores (ID´s ó entry´s) de Wotlk. 
+	Las “caches”  (si existían) han tenido prioridad, sobre todo lo anteriormente dicho.
+
+
+areatrigger_tavern:
+	En esta tabla, los textos se han extraído de la homónima de TDB, corrigiendo algunos artículos mal conjugados (ej. de  > “ del,” de > “ de la”).
+
+
+areatrigger_teleport:
+	En esta tabla, los textos se han extraído de la homónima de TDB, añadiendo las zonas que no estaban traducidas (WEB de wowhead).
+
+
+Command:
+	Esta tabla ha dado poco trabajo; se han traducido los 2 comandos que tiene.
+
+
+creature_ai_texts:
+	En esta tabla, PSDB aún no tiene contendidos, así que está vacía.
+
+
+creature_text:
+	En esta tabla, los textos se han extraído de la tabla “script_text” tanto de SD2 como de TC,  ya que están traducidos en una u otra DB.
+
+
+db_script_string:
+	En esta tabla, los textos se han extraído de la homónima de TDB, ya que están traducidos al completo.
+
+
+game_event:
+	En esta tabla, parte los textos se han extraído de la homónima de TDB, el resto se ha extraído vía WEB (wowhead).
+
+
+game_tele:
+	En esta tabla, parte los textos se han extraído de la homónima de TDB, el resto no se ha tocado, por carecer de información fidedigna.
+
+
+locales_achievement_reward:
+	En esta tabla, los textos se han extraído de la homónima de TDB, ya que están traducidos al completo.
+
+
+locales_creature:
+	En esta tabla se ha partido desde cero con ella, con el siguiente orden de acciones/ procesos:
+		1- Se ha introducido en ella toda la información que teníamos procedente de “caches” exclusivas de Cataclysm, aproximadamente 12.789 PNJ.
+		2- Parte del resto de los PNJ que no teníamos, se ha extraído vía WEB (wowhead) 16487 PNJ.
+		3- Del resto resultante de las dos acciones anteriores, se han cotejado enunciados con la tabla homónima de TDB, 973 PNJ se han encontrado e insertado, prácticamente son PNJ obsoletos, por parte de blizzard que no  influirán supuestamente en el juego. (¿pero por si acaso?..).
+		4- Finalmente se han eliminado todos los nombres sin “subname”  que coinciden en traducción con los de la tabla matriz “crature_template” , ya que en ausencia de este, el “core”, toma el nombre de esa tabla, esto se ha hecho con objeto de no duplicar datos en la DB y no por ello dejan de mostrarse esos textos en el cliente.
+Después de todos los procesos anteriores se han conseguido 28.583 PNJ válidos.
+
+
+locales_gameobject:
+	AL igual que la anterior, en esta tabla se ha partido desde cero con ella, con los siguientes procedimientos:
+		1- Se ha introducido en ella toda la información que teníamos procedente de “caches” exclusivas de Cataclysm, aproximadamente algo más de 7.000 GO.
+		2- El resto de la tabla se ha escaneado de wowhead, obteniendose 2.200 GO más.
+		3- Seguidamente se han traducido todas las “castbarcaption” de la tabla, ya que en otras partes de ella la mayoría ya estaban traducidos.
+No se han cotejado el resto de los GO de la tabla, con la equivalente de TDB, ya que he podido comprobar que la mayoría de las “entry” restantes tienen GO “provisionales” que no corresponden con sus “entry”, aparentemente esta tabla es literalmente un trastero, así que de los procesos anteriores se han sacado 9.558 GO válidos de Cataclysm tal y como está la tabla de PSDB ahora.
+
+
+locales_gossip_menu_option:
+	Estos son los procesos que se han llevado a cabo en esta tabla:
+		1- Se han cotejado textos con la tabla homóloga de YTDB, ya que la inmensa mayoría de ellos estaban traducidos en esta.
+		2- Los restantes se han traducido.
+		3- Por último, han corregido los géneros ($g) en las frases, donde se hace referencia a la “clase” en 1ª persona.
+Esta tabla quedado completamente al día con la revisión actual de PSDB (1.569 entry).
+
+
+locales_item:
+	En esta tabla ya se tenía el trabajo adelantado, ya que se había actualizado anteriormente la misma tabla del cliente Wotlk, así que se ha llevado a cabo los siguientes procedimientos con ella:
+		1- Como dicha tabla del cliente Woltk, es base de la que usa Cataclysm, y además blizzard  había actualizado enunciados de ciertos ítem de ella para Cataclysm, nos beneficiamos de esta que recientemente extraíamos, pues es 100x100 compatible con Cataclysm, así que se ha procedido al volcarla en la tabla locales_item de PSDB. El resultado ha sido; 37.130 item “reciclados” de Woltk.
+		2-  Posteriormente, se ha buscado en ella aquellos item que en Cataclysm tienen “desccription” y en Woltk no lo tuviese, mediante una comparación con la tabla ítem_template. Aquellos que en Cataclysm tienen enunciado en ese campo, se les ha añadido.
+		3- Se ha “parseado” el resto de los ítem faltantes vía WEB (wowbox),  11.088 item encontrados.
+Después de todos los procesos incluyendo una  limpieza de ítem obosletos , de prueba (TEST), ú ocultos ([ ]), la tabla a quedado con 48.218 item válidos.
+
+
+locales_item_set_names:
+	En esta tabla se ha partido desde cero con ella ya que no teníamos información fidedigna de ella, todos los ítem_set se han extraido vía WEB (wowhead) se han insertado 2620 entradas.
+
+locales_npc_text:
+	Esta tabla se ha cotejado entry x entry con la misma de TC y en igualdad de valor de entry´s existentes en TC, son idénticas a las de PSDB, a acepción de la 13055 y 13057 que en TC tienen texto y en PSDB no, y dos entry`s (13044 y 14091) de PSDB con errores ortográficos, con lo cual se ha llevado las siguientes acciones en la tabla:
+		1- Se ha volcado en ella la tabla locales_npc_text que teníamos de TC 2.228 entry.
+		2- Se la actualizado con las caches que teníamos de Cataclysm 1.233 entry.
+Aproximadamente el 50% de las entry´s, están traducidas, 3.461 entry.
+
+locales_page_text:
+	Esta página se ha cotejado con la misma de TDB, y se ha comprobado que existen bastantes diferencias con esta, además de que TDB no tiene textos donde PSDB si los tiene, así que cotejé la misma tabla de YTDB (MaNGOS) con esta, y las coincidencias aumentaron significativamente, con lo cual deduzco que esta tabla de PSDB está basada en la de YTDB.
+	Hecha esta aclaración, se ha procedido con los siguientes procesos:
+		1- Se han comprobado 1 a 1 todos los textos de las entry`s que coinciden en número en ambas tablas, este proceso se ha llevado meticulosamente, ya que hay diferencias insignificantes a nivel de espacios entre palabras, y errores ortográficos que PSDB ha corregido de YTDB, además de textos en Aleman que tiene YTDB y que PSDB los tiene en ingles (pero son los mismos) más de lo mismo con los que tiene en Ruso YTDB y que PSDB ha conseguido en ingles.
+		   Una vez comprobado esto, se han anulado de la tabla de YTDB todas las entry´s que difieren en texto, y se ha volcado la tabla resultante de YTDB en la tabla “locales_npc_text” de PSDB.
+		2- Seguidamente se ha volcado las caches que teníamos de Cataclysm en dicha tabla, (previamente se había eliminado del script de caches textos que se habían colado en ingles ¿?).
+	El resultado final ha sido 1.668 entry válidas de en la tabla locales_page_text, quedando la tabla con más del 80% de los textos traducidos. No sé porque teníamos una entry en texto normal, cuando debía estar en HTML ¿?, la he pasado  HTML.
+	He de remarcar que tanto la tabla matriz (page_text) de PSDB como la de YTDB están hechas un desastre ortográfico con un montón de errores en ellas. Podemos estar orgullosos de tener la tabla locales_page_text  más limpia y correcta de la red, y lo digo con plena convicción
+
+locales_points_of_interest:
+	Esta tabla es identica a la homóloga de TDB, así que se ha procedido ha volcar la de TDB en esta.
+
+locales_quest:
+	Con esta tabla se ha partido desde cero, recopilando toda la información de la WEB de WowBox a acepción de las columnas “OfferRewardText y  RequestItemsText”, (que solo se pueden conseguir de las caches oficiales del juego).  Se ha procedido de la siguiente manera:
+		1- Partiendo de la columna “Title”, se han insertado en la tabla y filtrado, todos los títulos que estaban en español, seguidamente se ha obtenido la columna “Detail” y se han filtrado los textos que estaban en español, eliminando de esta forma los “Title” que aún estando en español, tenían “Detail” en ingles.
+		2- Tomando como base el resultado del punto 1º, se han extraído el resto de las columnas que estaban disponibles en la web, obteniéndose un total de 12.918 “quest” válidas con 11.579 “Detail” y “Objetives” en español.
+		3- Para los “OfferRewardText y  RequestItemsText”, se han cotejado “entry” y “Title” de Cataclysm con las de Wotlk, viendo cuales eran idénticas, y tenían el mismo “OfferRewardText y  RequestItemsText”,  con idénticos textos, y que tuviésemos traducidos de caches del Wotlk, y se han insertado en la tabla. Obteniéndose 37 “OfferRewardText” de los 344 que dispone PSDB y 31 “RequestItemsText” de los 149 disponibles.
+
+player_factionchange_items:
+	Esta tabla se ha extraído por completo de la tabla locales_items.
+
+script_texts:
+	Los textos de esta tabla se han extraído de las mismas tablas TC y SD2 por coincidencia de textos. Solo se han encontrado 28 entradas.
+
+transports:
+	Esta tabla es idéntica a la de YTDB, así que se ha volcado la de YTDB en ella.
+
+trinity_string:
+	Esta tabla se ha cotejado entry por entry con la de TC y aparte de tener más entradas, se ha encontrado una sola diferencia con las que coinciden, la 517, así que se ha modificado en la tabla de TC y se ha volcado todas las entry que teníamos traducidas de TC en esta tabla (913 entry).
+
+vehicle_accessory:
+	Esta tabla se ha extraído de la WEB de wowhead ya que dichos PNJ no están incluidos en la tabla locales_creature.
